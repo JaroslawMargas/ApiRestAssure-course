@@ -3,7 +3,9 @@ package petstore;
 import ApiData.Category;
 import ApiData.Pet;
 import ApiData.Tag;
+import io.restassured.response.Response;
 import org.json.simple.JSONObject;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -41,10 +43,13 @@ public class PETSTORE_PetEndpointTest {
         String jsonPet = pet.toJSON();
 
 
-        given().log().all().accept("application/json")
+        Response response = given().log().all().accept("application/json")
                 .contentType( "application/json")
                 .body(jsonPet)
                 .expect().statusCode(200)
         .when().post("https://petstore.swagger.io/v2/pet");
+
+        response.jsonPath().get("SuccessCode");
+        Assert.assertEquals( "Correct Success code was returned", "doggie", response.jsonPath().get("name"));
     }
 }
