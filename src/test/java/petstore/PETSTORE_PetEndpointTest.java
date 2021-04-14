@@ -8,8 +8,10 @@ import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.Array;
+
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.Matchers.*;
 
 public class PETSTORE_PetEndpointTest {
 
@@ -30,7 +32,7 @@ public class PETSTORE_PetEndpointTest {
 //        }
 
         Long id = 0L;
-        Category category = new Category("Category name", 0);
+        Category category = new Category("Dog", 0);
         String name = "doggie";
         String[] photoUrls = new String[]{"https://petstore.swagger.io/1.jpg"};
         Tag[] tags = new Tag[1];
@@ -47,9 +49,12 @@ public class PETSTORE_PetEndpointTest {
                 .contentType( "application/json")
                 .body(jsonPet)
                 .expect().statusCode(200)
+                .and()
+                .body("category.name", equalTo("Dog"))
+                .body("name", equalTo("doggie"))
+                .body("tags.name", hasItem("string"))
+                .body("status", hasItem("available"))
         .when().post("https://petstore.swagger.io/v2/pet");
 
-        response.jsonPath().get("SuccessCode");
-        Assert.assertEquals( "Correct Success code was returned", "doggie", response.jsonPath().get("name"));
     }
 }
