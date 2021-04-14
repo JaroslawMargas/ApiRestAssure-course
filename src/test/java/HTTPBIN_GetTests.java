@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import static io.restassured.RestAssured.*;
 
-public class FirstTest {
+public class HTTPBIN_GetTests {
 
     @Test
     public void getBDD_test() {
