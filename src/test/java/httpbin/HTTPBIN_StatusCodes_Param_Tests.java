@@ -27,7 +27,7 @@ public class HTTPBIN_StatusCodes_Param_Tests {
 
     @Test
     public void testSearch() {
-        given().
+        given().log().all().
                 pathParam("codes",value).
                 when().
                 get("https://httpbin.org/status/{codes}").

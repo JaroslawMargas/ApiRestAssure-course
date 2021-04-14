@@ -12,7 +12,7 @@ public class HTTPBIN_GetTests {
     @Test
     public void getBDD_test() {
 
-        given().
+        given().log().all().
                 when().
                 get("https://httpbin.org/get").
                 then().
