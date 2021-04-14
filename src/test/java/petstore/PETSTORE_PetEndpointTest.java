@@ -53,7 +53,7 @@ public class PETSTORE_PetEndpointTest {
                 .body("category.name", equalTo("Dog"))
                 .body("name", equalTo("doggie"))
                 .body("tags.name", hasItem("string"))
-                .body("status", hasItem("available"))
+                .body("status", equalTo("available"))
         .when().post("https://petstore.swagger.io/v2/pet");
 
     }
