@@ -19,7 +19,7 @@ public class PETSTORE_PetEndpointTest {
     public void PETSTORE_Post_Test() {
 //        {
 //            "id": 0,   <-- string
-//            "category": { "id": 0, "name": "string" }, <-- object
+//            "category": { "id": 0, "name": "Dog" }, <-- object
 //            "name": "doggie", <-- string
 //            "photoUrls": ["string"], <-- array of string
 //            "tags": [ <-- array of object
